@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, {useEffect, useReducer} from 'react';
 
 //Material UI components
 import Container from '@material-ui/core/Container';
@@ -9,11 +9,13 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Input_one from './components/Input_one';
 import Input_two from './components/Input_two';
 import Input_three from './components/Input_three';
+import Counter from './components/Counter';
 
 import logo from '../logo1.png';
 import '../App.css';
 import RangeSlider from './components/RangeSlider';
 import StartButton from './components/StartButton';
+import {read} from '../utils';
 
 export const AppContext = React.createContext();
 
@@ -23,6 +25,8 @@ const initialState = {
   text3: 0,
   rangeMin: 0,
   rangeMax: 100,
+  counter: 0,
+  results: [],
 };
 
 function getRandomInt(min, max) {
@@ -31,6 +35,11 @@ function getRandomInt(min, max) {
 
 function reducer(state, action) {
   switch (action.type) {
+    case 'RELOAD_COUNTER':
+      return {
+        ...state,
+        counter: 0,
+      };
     case 'UPDATE_RANGE':
       return {
         ...state,
@@ -43,6 +52,12 @@ function reducer(state, action) {
         text1: getRandomInt(state.rangeMin, state.rangeMax),
         text2: getRandomInt(state.rangeMin, state.rangeMax),
         text3: getRandomInt(state.rangeMin, state.rangeMax),
+        counter: state.counter+1,
+      };
+    case 'UPDATE_RESULTS':
+      return {
+        ...state,
+        results: action.payload.result,
       };
     default:
       return initialState;
@@ -52,12 +67,19 @@ function reducer(state, action) {
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  useEffect(()=>{
+    read((results) => {
+      dispatch({ type: 'UPDATE_RESULTS', payload: {results} });
+    });
+  }, []);
+
   return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo"/>
           <AppContext.Provider value={{state, dispatch}}>
+            <img src={logo} className="App-logo" alt="logo"/>
             <RangeSlider/>
+            <Counter />
             <Container maxWidth="lg">
               <CssBaseline/>
               <StartButton/>

@@ -4,24 +4,24 @@ import {makeStyles} from "@material-ui/core/styles/index";
 //Material UI components
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
 
 import { AppContext } from '../App'
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   root: {
-    padding: 10,
+    padding: 5,
     display: 'flex',
     alignItems: 'center',
     width: '100%',
+    backgroundColor: 'rgba(255,255,255,0.5)',
   },
   input: {
-    margin: 10,
+    margin: 5,
     flex: 1,
   },
   iconButton: {
-    padding: 10,
+    padding: 5,
   }
 });
 

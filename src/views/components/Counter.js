@@ -5,16 +5,20 @@ import {makeStyles} from "@material-ui/core/styles/index";
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 
+//Material UI Icons
+import IconButton from '@material-ui/core/IconButton';
+import RefreshIcon from '@material-ui/icons/Refresh';
+
 import { AppContext } from '../App'
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   root: {
-    padding: 5,
+    padding: 10,
     display: 'flex',
     alignItems: 'center',
     width: '100%',
-    backgroundColor: 'rgba(255,255,255,0.5)',
+    backgroundColor: 'rgba(255,255,255,0.1)',
   },
   input: {
     margin: 5,
@@ -25,24 +29,33 @@ const useStyles = makeStyles({
   }
 });
 
-export default function Input_two() {
+export default function Counter() {
   const classes = useStyles();
+  const { state, dispatch } = useContext(AppContext);
 
-  const { state } = useContext(AppContext);
+  const handlerClick = () => {
+    dispatch({ type: 'UPDATE_COUNTER', payload: {counter: 0} });
+  };
 
   return(
     <React.Fragment>
-      <Grid item xs={12} md={4}>
+      <Grid item xs={12} md={10}>
         <Paper className={classes.root}>
+          <IconButton
+            aria-label="reload-counter"
+            onClick={handlerClick}
+            label={'Обнулить'}
+          >
+            <RefreshIcon />
+          </IconButton>
           <Typography
-              component="h2"
-              variant="h1"
+              variant="h6"
               color="inherit"
               align="center"
               noWrap
               className={classes.input}
           >
-            {state.text2}
+            {`Раунд № ${state.counter}`}
           </Typography>
         </Paper>
       </Grid>
