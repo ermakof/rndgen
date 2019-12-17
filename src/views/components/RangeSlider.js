@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import Toolbar from "@material-ui/core/Toolbar";
+import {AppContext} from "../App";
 
 const useStyles = makeStyles({
   root: {
-    width: 300,
+    width: 700,
   },
   toolbarTitle: {
     flex: 1,
@@ -14,15 +15,16 @@ const useStyles = makeStyles({
 });
 
 function valuetext(value) {
-  return `${value}°C`;
+  return `${value}`;
 }
 
 export default function RangeSlider() {
   const classes = useStyles();
-  const [value, setValue] = React.useState([20, 37]);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const {state, dispatch} = useContext(AppContext);
+
+  const handleChange = (event, range) => {
+    dispatch({ type: 'UPDATE_RANGE', payload: {range} });
   };
 
   return (
@@ -30,7 +32,7 @@ export default function RangeSlider() {
       <Toolbar>
         <Typography
           component="h2"
-          variant="h5"
+          variant="h4"
           color="inherit"
           align="center"
           noWrap
@@ -40,7 +42,7 @@ export default function RangeSlider() {
         </Typography>
       </Toolbar>
       <Slider
-        value={value}
+        value={[state.rangeMin, state.rangeMax]}
         onChange={handleChange}
         valueLabelDisplay="auto"
         aria-labelledby="range-slider"

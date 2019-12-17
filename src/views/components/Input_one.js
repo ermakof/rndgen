@@ -7,16 +7,18 @@ import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 
 import { AppContext } from '../App'
+import Typography from "@material-ui/core/Typography";
+import Toolbar from "@material-ui/core/Toolbar";
 
 const useStyles = makeStyles({
   root: {
-    padding: '2px 4px',
+    padding: 10,
     display: 'flex',
     alignItems: 'center',
     width: '100%',
   },
   input: {
-    marginLeft: '8px',
+    margin: 10,
     flex: 1,
   },
   iconButton: {
@@ -33,13 +35,16 @@ export default function Input_one() {
     <React.Fragment>
       <Grid item xs={12} md={4}>
         <Paper className={classes.root}>
-          <TextField
-            className={classes.input}
-            label="Первое число"
-            variant="outlined"
-            value={state.inputText1}
-            disabled
-          />
+          <Typography
+              component="h2"
+              variant="h1"
+              color="inherit"
+              align="center"
+              noWrap
+              className={classes.input}
+          >
+            {state.text1}
+          </Typography>
         </Paper>
       </Grid>
     </React.Fragment>

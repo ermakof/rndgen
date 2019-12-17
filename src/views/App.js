@@ -18,11 +18,11 @@ import StartButton from './components/StartButton';
 export const AppContext = React.createContext();
 
 const initialState = {
-  inputText1: 0,
-  inputText2: 0,
-  inputText3: 0,
-  rangMin: -100,
-  rangMax: 100,
+  text1: 0,
+  text2: 0,
+  text3: 0,
+  rangeMin: 0,
+  rangeMax: 100,
 };
 
 function getRandomInt(min, max) {
@@ -31,19 +31,18 @@ function getRandomInt(min, max) {
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'UPDATE_RANG_MIN':
+    case 'UPDATE_RANGE':
       return {
-        rangMin: action.data
-      };
-    case 'UPDATE_RANG_MAX':
-      return {
-        rangMax: action.data
+        ...state,
+        rangeMin: action.payload.range[0],
+        rangeMax: action.payload.range[1],
       };
     case 'START_GENERATE':
       return {
-        inputText1: getRandomInt(state.rangMin, state.rangMax),
-        inputText2: getRandomInt(state.rangMin, state.rangMax),
-        inputText3: getRandomInt(state.rangMin, state.rangMax),
+        ...state,
+        text1: getRandomInt(state.rangeMin, state.rangeMax),
+        text2: getRandomInt(state.rangeMin, state.rangeMax),
+        text3: getRandomInt(state.rangeMin, state.rangeMax),
       };
     default:
       return initialState;
@@ -54,25 +53,23 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Container maxWidth="lg">
-          <CssBaseline />
-
-          <RangeSlider />
-            <AppContext.Provider value={{ state, dispatch }}>
-              <StartButton />
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo"/>
+          <AppContext.Provider value={{state, dispatch}}>
+            <RangeSlider/>
+            <Container maxWidth="lg">
+              <CssBaseline/>
+              <StartButton/>
               <Grid container spacing={1}>
                 <Input_one/>
                 <Input_two/>
                 <Input_three/>
               </Grid>
-            </AppContext.Provider>
-
-        </Container>
-      </header>
-    </div>
+            </Container>
+          </AppContext.Provider>
+        </header>
+      </div>
   );
 }
 
