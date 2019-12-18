@@ -46,11 +46,6 @@ function reducer(state, action) {
   console.log('Reducer action:');
   console.log(action);
   switch (action.type) {
-    case 'RELOAD_COUNTER':
-      return {
-        ...state,
-        roundCounter: 0,
-      };
     case 'UPDATE_RANGE':
       return {
         ...state,
@@ -103,8 +98,13 @@ function reducer(state, action) {
         ...state,
         ...action.payload.data,
       };
+    case 'UPDATE_COUNTER':
+      return {
+        ...state,
+        roundCounter: action.payload.roundCounter,
+      };
     default:
-      return initialState;
+      return state;
   }
 }
 

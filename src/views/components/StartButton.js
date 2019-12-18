@@ -30,11 +30,13 @@ export default function StartButton() {
           setGenerateOn(false);
         }, state.roundTimeout));
     } else {
-      clearInterval(intervalId);
-      setIntervalId(0);
-      clearTimeout(timeoutId);
-      setTimeoutId(0);
-      dispatch({type: 'STOP_GENERATE'})
+      if (intervalId && timeoutId) {
+        clearInterval(intervalId);
+        setIntervalId(0);
+        clearTimeout(timeoutId);
+        setTimeoutId(0);
+        dispatch({type: 'STOP_GENERATE'})
+      }
     }
   }, [generateOn]);
 

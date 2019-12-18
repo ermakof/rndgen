@@ -11,7 +11,8 @@ export function read(callback) {
     console.log(`Path to config file => ${configPath}`);
 
     fs.readFile(
-        path.resolve(path.resolve('c://', 'RndGen', './config.json')),
+      path.resolve(path.resolve('c://', 'RndGen', './config.json')),
+        // path.resolve(path.resolve(process.cwd(), 'src', './config.json')),
         'utf-8',
         (err, data) => {
             if (err) throw err;
