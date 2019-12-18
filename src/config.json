@@ -1,8 +1,10 @@
 {
+  "roundTimeout": 2000,
+  "roundInterval": 100,
   "info": {
-    "version": "0.1.0",
-    "author": "Ермаков А.Б.",
-    "organization": "СФК"
+    "version": "0.3.0",
+    "author": "Ermakov A.B.",
+    "organization": "Kirovpaper"
   },
   "range": {
     "min": 0,
@@ -16,9 +18,15 @@
       "number3": 4
     },
     {
-      "round": 15,
+      "round": 9,
       "number1": 31,
       "number2": 53,
+      "number3": 28
+    },
+    {
+      "round": 13,
+      "number1": 28,
+      "number2": 28,
       "number3": 28
     }
   ]

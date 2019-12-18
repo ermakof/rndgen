@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     width: '100%',
-    backgroundColor: 'rgba(255,255,255,0.5)',
+    backgroundColor: 'rgba(255,255,255,0.4)',
   },
   input: {
     margin: 5,

@@ -32,6 +32,8 @@ const initialState = {
   results: [],
   loadTime: '',
   roundCounter: 0,
+  roundTimeout: 2000,
+  roundInterval: 100,
 };
 
 function getRandomInt(min, max) {
@@ -57,7 +59,18 @@ function reducer(state, action) {
           max: action.payload.range[1],
         }
       };
-    case 'START_GENERATE':
+    case 'START_GENERATE': {
+      let number1 = getRandomInt(state.range.min, state.range.max);
+      let number2 = getRandomInt(state.range.min, state.range.max);
+      let number3 = getRandomInt(state.range.min, state.range.max);
+      return {
+        ...state,
+        number1,
+        number2,
+        number3,
+      };
+    }
+    case 'STOP_GENERATE': {
       const roundCounter = state.roundCounter + 1;
       let number1 = getRandomInt(state.range.min, state.range.max);
       let number2 = getRandomInt(state.range.min, state.range.max);
@@ -84,6 +97,7 @@ function reducer(state, action) {
         number3,
         roundCounter,
       };
+    }
     case 'UPDATE_CONFIG':
       return {
         ...state,
