@@ -10,42 +10,38 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   root: {
-    padding: 5,
-    display: 'flex',
+    padding: 1,
+    position: 'fixed',
+    bottom: 10,
     alignItems: 'center',
-    width: '100%',
-    backgroundColor: 'rgba(255,255,255,0.5)',
+    width: '80%',
+    backgroundColor: 'rgba(255,255,255,0)',
   },
   input: {
-    margin: 5,
+    margin: 1,
     flex: 1,
   },
   iconButton: {
-    padding: 5,
+    padding: 1,
   }
 });
 
-export default function Input_one() {
+export default function Info() {
   const classes = useStyles();
-
-  const { state } = useContext(AppContext);
-
-  return(
-    <React.Fragment>
-      <Grid item xs={12} md={4}>
+  const {state} = useContext(AppContext);
+  const {version = '', author = '', organization = ''} = state.info;
+  return (
+      <React.Fragment>
         <Paper className={classes.root}>
           <Typography
-              component="h2"
-              variant="h1"
+              variant="subtitle2"
               color="inherit"
-              align="center"
               noWrap
               className={classes.input}
           >
-            {state.number1}
+            {`Версия: ${version} Организация: ${organization} Автор: ${author} Время: ${state.loadTime}`}
           </Typography>
         </Paper>
-      </Grid>
-    </React.Fragment>
+      </React.Fragment>
   )
 }

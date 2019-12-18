@@ -42,7 +42,7 @@ export default function RangeSlider() {
         </Typography>
       </Toolbar>
       <Slider
-        value={[state.rangeMin, state.rangeMax]}
+        value={[state.range.min, state.range.max]}
         onChange={handleChange}
         valueLabelDisplay="auto"
         aria-labelledby="range-slider"

@@ -25,7 +25,7 @@ export default function StartButton() {
               color="primary"
               onClick={handleClickStartButton}
       >
-        {`Генерировать числа в диапазоне с ${state.rangeMin} по ${state.rangeMax}`}
+        {`Генерировать числа в диапазоне с ${state.range.min} по ${state.range.max}`}
       </Button>
     </div>
   );

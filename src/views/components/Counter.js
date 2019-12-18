@@ -34,7 +34,7 @@ export default function Counter() {
   const { state, dispatch } = useContext(AppContext);
 
   const handlerClick = () => {
-    dispatch({ type: 'UPDATE_COUNTER', payload: {counter: 0} });
+    dispatch({ type: 'UPDATE_COUNTER', payload: {roundCounter: 0} });
   };
 
   return(
@@ -55,7 +55,7 @@ export default function Counter() {
               noWrap
               className={classes.input}
           >
-            {`Раунд № ${state.counter}`}
+            {`Раунд № ${state.roundCounter}`}
           </Typography>
         </Paper>
       </Grid>

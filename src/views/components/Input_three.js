@@ -42,7 +42,7 @@ export default function Input_two() {
               noWrap
               className={classes.input}
           >
-            {state.text3}
+            {state.number3}
           </Typography>
         </Paper>
       </Grid>
