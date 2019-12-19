@@ -1,7 +1,7 @@
 {
   "name": "rndgen",
   "description": "Random generator",
-  "version": "0.1.0",
+  "version": "0.3.2",
   "private": true,
   "author": {
     "name": "Ermakov Alexey",

@@ -6,9 +6,9 @@ import Grid from '@material-ui/core/Grid';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 //Import our Inputs
-import Input_one from './components/Input_one';
-import Input_two from './components/Input_two';
-import Input_three from './components/Input_three';
+import Number1 from './components/Number1';
+import Number2 from './components/Number2';
+import Number3 from './components/Number3';
 import Counter from './components/Counter';
 import Info from './components/Info';
 
@@ -16,97 +16,10 @@ import logo from '../logo1.png';
 import '../App.css';
 import RangeSlider from './components/RangeSlider';
 import StartButton from './components/StartButton';
-import { read, arrayToObject } from '../utils';
+import { read } from '../utils';
+import { reducer, initialState } from '../reducer';
 
 export const AppContext = React.createContext();
-
-const initialState = {
-  number1: 0,
-  number2: 0,
-  number3: 0,
-  info: {},
-  range: {
-    min: 0,
-    max: 100
-  },
-  results: [],
-  loadTime: '',
-  roundCounter: 0,
-  roundTimeout: 2000,
-  roundInterval: 100,
-};
-
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-function reducer(state, action) {
-  console.log('Reducer state:');
-  console.log(state);
-  console.log('Reducer action:');
-  console.log(action);
-  switch (action.type) {
-    case 'UPDATE_RANGE':
-      return {
-        ...state,
-        range: {
-          min: action.payload.range[0],
-          max: action.payload.range[1],
-        }
-      };
-    case 'START_GENERATE': {
-      let number1 = getRandomInt(state.range.min, state.range.max);
-      let number2 = getRandomInt(state.range.min, state.range.max);
-      let number3 = getRandomInt(state.range.min, state.range.max);
-      return {
-        ...state,
-        number1,
-        number2,
-        number3,
-      };
-    }
-    case 'STOP_GENERATE': {
-      const roundCounter = state.roundCounter + 1;
-      let number1 = getRandomInt(state.range.min, state.range.max);
-      let number2 = getRandomInt(state.range.min, state.range.max);
-      let number3 = getRandomInt(state.range.min, state.range.max);
-      if (state.results.length > 0) {
-        const results = arrayToObject(state.results, 'round');
-        const round = results[roundCounter];
-        if (round) {
-          if (round.number1) {
-            number1 = round.number1;
-          }
-          if (round.number2) {
-            number2 = round.number2;
-          }
-          if (round.number3) {
-            number3 = round.number3;
-          }
-        }
-      }
-      return {
-        ...state,
-        number1,
-        number2,
-        number3,
-        roundCounter,
-      };
-    }
-    case 'UPDATE_CONFIG':
-      return {
-        ...state,
-        ...action.payload.data,
-      };
-    case 'UPDATE_COUNTER':
-      return {
-        ...state,
-        roundCounter: action.payload.roundCounter,
-      };
-    default:
-      return state;
-  }
-}
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -128,9 +41,9 @@ function App() {
               <CssBaseline/>
               <StartButton/>
               <Grid container spacing={1}>
-                <Input_one/>
-                <Input_two/>
-                <Input_three/>
+                <Number1/>
+                <Number2/>
+                <Number3/>
               </Grid>
             </Container>
             <Info />

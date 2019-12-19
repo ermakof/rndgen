@@ -11,7 +11,7 @@ export function read(callback) {
     console.log(`Path to config file => ${configPath}`);
 
     fs.readFile(
-      path.resolve(path.resolve('c://', 'RndGen', './config.json')),
+        path.resolve(path.resolve('c://', 'RndGen', './config.json')),
         // path.resolve(path.resolve(process.cwd(), 'src', './config.json')),
         'utf-8',
         (err, data) => {
@@ -28,4 +28,8 @@ export function arrayToObject(array, keyField) {
         obj[item[keyField]] = item;
         return obj;
     }, {});
+}
+
+export function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }

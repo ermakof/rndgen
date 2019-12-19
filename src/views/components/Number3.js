@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function Input_two() {
+export default function Number3() {
   const classes = useStyles();
 
   const { state } = useContext(AppContext);
@@ -42,7 +42,7 @@ export default function Input_two() {
               noWrap
               className={classes.input}
           >
-            {state.number2}
+            {state.number3}
           </Typography>
         </Paper>
       </Grid>

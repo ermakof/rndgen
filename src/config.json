@@ -2,7 +2,7 @@
   "roundTimeout": 2000,
   "roundInterval": 100,
   "info": {
-    "version": "0.3.1",
+    "version": "0.3.2",
     "author": "Ermakov A.B.",
     "organization": "Kirovpaper"
   },
